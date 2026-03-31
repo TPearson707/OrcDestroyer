@@ -1,0 +1,1 @@
+g++ src/GameController.cpp src/AssetManager.cpp src/Game.cpp src/Orc.cpp src/Player.cpp -o main.exe -std=c++17 -I./SFML-3.0.2/include -L./SFML-3.0.2/lib -lsfml-graphics -lsfml-window -lsfml-system

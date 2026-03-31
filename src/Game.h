@@ -9,6 +9,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Orc.h"
 
 class Game {
     public:
@@ -24,4 +25,5 @@ class Game {
         sf::RenderWindow mWindow;
         sf::CircleShape mPlayer;
         Player player;
+        Orc orc;
 };

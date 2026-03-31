@@ -8,9 +8,33 @@
 #include "Orc.h"
 #include <iostream>
 
-Orc::Orc() {
+Orc::Orc() 
+: sprite(AssetManager::getInstance().getTexture(CharacterType::ORC, Action::IDLE))
+{
     hp = 1;
     attackDamage = 1;
+
+    // set first frame to idle animation
+    std::vector<sf::IntRect> idleFrames = AssetManager::getInstance().getFrames(CharacterType::ORC, Action::IDLE);
+    sprite.setTextureRect(idleFrames[0]);
+
+    sprite.setOrigin({100.f, 0.f});  // Assuming frame width is 100
+    sprite.setScale({-1.f, 1.f});
+    sprite.setPosition({400.f, 300.f});  // Now this position is where you expect
+}
+
+void Orc::update(float deltaTime) {
+    animTimer += deltaTime;
+    if (animTimer >= frameInterval) {
+        auto& currentFrames = AssetManager::getInstance().getFrames(CharacterType::ORC, currentAction);
+        currentFrame = (currentFrame + 1) % currentFrames.size();
+        sprite.setTextureRect(currentFrames[currentFrame]);
+        animTimer = 0.f;
+    }
+}
+
+void Orc::setSprite(sf::Texture& newSprite) {
+    sprite.setTexture(newSprite);
 }
 
 // Using sentinel/assert - enforce minimum 0
@@ -20,6 +44,10 @@ void Orc::setHP(int hp) {
 
 void Orc::setAttackDamage(int attackDamage) {
     this->attackDamage = std::max(0, attackDamage);
+}
+
+sf::Sprite& Orc::getSprite() {
+    return sprite;
 }
 
 int Orc::getHP() {

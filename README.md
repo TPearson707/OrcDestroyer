@@ -42,7 +42,7 @@ make
 
 ## Screenshots
 
-![Gameplay](screenshot.png)
+![Gameplay](OrcDestroyer_V0.1.png)
 
 ---
 

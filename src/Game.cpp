@@ -11,7 +11,10 @@
 Game::Game()
 : mWindow(sf::VideoMode({640, 480}), "Orc Destroyer")
 , mPlayer()
+, player()
+, orc()
 {
+
     mWindow.setPosition({10, 50});
     mWindow.setVerticalSyncEnabled(true);
     mWindow.setFramerateLimit(60);
@@ -44,10 +47,12 @@ void Game::processEvents() {
 
 void Game::update(float deltaTime) {
     player.update(deltaTime);
+    orc.update(deltaTime);
 }
 
 void Game::render() {
     mWindow.clear();
     mWindow.draw(player.getSprite());
+    mWindow.draw(orc.getSprite());
     mWindow.display();
 }

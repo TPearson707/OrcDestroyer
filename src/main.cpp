@@ -1,5 +1,21 @@
+/**
+ * Title: main.cpp
+ * Author: Thomas Pearson
+ * Date Created: 03/24/2026
+ * Date of Last Update: 03/24/2026
+ * 
+ * Purpose: Day one brain dump. This file was written to learn SFML basics
+ * and C++ game loop structure without worrying about architecture. It contains
+ * global state, magic strings, hardcoded values, and tight coupling between
+ * systems, all choices were intential to prioritize learning over clean code.
+ * 
+ * This file is frozen and will not be modified. Every refactor since has been
+ * a direct response to something that hurt in this original implementation.
+ */
+
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 #include <unordered_map>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
