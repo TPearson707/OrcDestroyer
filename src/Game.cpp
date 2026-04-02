@@ -10,7 +10,6 @@
 
 Game::Game()
 : mWindow(sf::VideoMode({640, 480}), "Orc Destroyer")
-, mPlayer()
 , player()
 , orc()
 {
@@ -25,11 +24,18 @@ Game::Game()
 }
 
 void Game::run() {
-
+    const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+    sf::Clock clock;
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while (mWindow.isOpen()) {
-        float dt = dtClock.restart().asSeconds();
         processEvents();
-        update(dt);
+        timeSinceLastUpdate += clock.restart();
+        while (timeSinceLastUpdate > TimePerFrame) {
+            timeSinceLastUpdate -= TimePerFrame;
+            processEvents();
+            update(TimePerFrame);
+        }
+
         render();
     }
 
@@ -40,14 +46,16 @@ void Game::processEvents() {
     while (const std::optional event = mWindow.pollEvent()) {
         if (event->is<sf::Event::Closed>())
             mWindow.close();
-
+        
     }
 
 }
 
-void Game::update(float deltaTime) {
-    player.update(deltaTime);
-    orc.update(deltaTime);
+void Game::update(sf::Time dt) {
+    player.update(dt);
+    orc.update(dt);
+
+    
 }
 
 void Game::render() {

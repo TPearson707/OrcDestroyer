@@ -8,6 +8,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Animator.h"
 #include "AssetManager.h"
 
 class Player {
@@ -15,7 +16,8 @@ class Player {
         Player();
         // Player(int, int);
 
-        void update(float deltaTime);
+        void handleInput();
+        void update(sf::Time);
 
         void setSprite(sf::Texture&);
         void setHP(int);
@@ -30,6 +32,7 @@ class Player {
 
     private:
         sf::Sprite sprite;  
+        Animator playerAnimator;
         int hp;
         int attackDamage;
 

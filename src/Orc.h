@@ -8,13 +8,14 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Animator.h"
 #include "AssetManager.h"
 
 class Orc {
     public:
         Orc();
         
-        void update(float);
+        void update(sf::Time);
 
         void setSprite(sf::Texture&);
         void setHP(int);
@@ -29,6 +30,7 @@ class Orc {
     private:
     private:
         sf::Sprite sprite;  
+        Animator orcAnimator;
         int hp;
         int attackDamage;
 

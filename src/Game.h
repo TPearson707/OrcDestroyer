@@ -18,7 +18,7 @@ class Game {
         void run();
     private:
         void processEvents();
-        void update(float);
+        void update(sf::Time);
         void render();
     private:
         sf::Clock dtClock;

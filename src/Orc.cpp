@@ -18,19 +18,16 @@ Orc::Orc()
     std::vector<sf::IntRect> idleFrames = AssetManager::getInstance().getFrames(CharacterType::ORC, Action::IDLE);
     sprite.setTextureRect(idleFrames[0]);
 
+    orcAnimator.setFrames(idleFrames);
+
     sprite.setOrigin({100.f, 0.f});  // Assuming frame width is 100
     sprite.setScale({-1.f, 1.f});
     sprite.setPosition({400.f, 300.f});  // Now this position is where you expect
 }
 
-void Orc::update(float deltaTime) {
-    animTimer += deltaTime;
-    if (animTimer >= frameInterval) {
-        auto& currentFrames = AssetManager::getInstance().getFrames(CharacterType::ORC, currentAction);
-        currentFrame = (currentFrame + 1) % currentFrames.size();
-        sprite.setTextureRect(currentFrames[currentFrame]);
-        animTimer = 0.f;
-    }
+void Orc::update(sf::Time dt) {
+    orcAnimator.setFrames(AssetManager::getInstance().getFrames(CharacterType::ORC, currentAction));
+    orcAnimator.animate(sprite, dt);
 }
 
 void Orc::setSprite(sf::Texture& newSprite) {

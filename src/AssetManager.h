@@ -19,6 +19,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include "ResourceManager.hpp"
+
 enum class CharacterType { SOLDIER, ORC };
 enum class Action { IDLE, WALK, ATTACK };
 

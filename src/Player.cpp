@@ -18,6 +18,13 @@ Player::Player()
     // set first frame to idle animation
     std::vector<sf::IntRect> idleFrames = AssetManager::getInstance().getFrames(CharacterType::SOLDIER, Action::IDLE);
     sprite.setTextureRect(idleFrames[0]);
+
+    // Set the initial player frames to animate
+    playerAnimator.setFrames(idleFrames);
+}
+
+void Player::handleInput() {
+
 }
 
 // Player::Player(int hp, int attackDamage) {
@@ -25,14 +32,9 @@ Player::Player()
 //     this->attackDamage = attackDamage;
 // }
 
-void Player::update(float deltaTime) {
-    animTimer += deltaTime;
-    if (animTimer >= frameInterval) {
-        auto& currentFrames = AssetManager::getInstance().getFrames(CharacterType::SOLDIER, currentAction);
-        currentFrame = (currentFrame + 1) % currentFrames.size();
-        sprite.setTextureRect(currentFrames[currentFrame]);
-        animTimer = 0.f;
-    }
+void Player::update(sf::Time dt) {
+    playerAnimator.setFrames(AssetManager::getInstance().getFrames(CharacterType::SOLDIER, currentAction));
+    playerAnimator.animate(sprite, dt);
 }
 
 void Player::setSprite(sf::Texture& newSprite) {
