@@ -9,7 +9,7 @@
 #include <iostream>
 
 Orc::Orc() 
-: Entity(AssetManager::getInstance().getTexture(CharacterType::ORC, Action::IDLE))
+: Entity(AssetManager::getInstance().getTexture(CharacterType::ORC, Action::IDLE), CharacterType::ORC)
 {
     // set first frame to idle animation
     std::vector<sf::IntRect> idleFrames = AssetManager::getInstance().getFrames(CharacterType::ORC, Action::IDLE);

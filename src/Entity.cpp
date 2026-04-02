@@ -1,15 +1,16 @@
 #include "Entity.h"
 #include <iostream>
 
-Entity::Entity(sf::Texture& texture) 
+Entity::Entity(sf::Texture& texture, CharacterType character) 
 : sprite(texture)
 {
+    this->character = character;
     hp = 1;
     attackDamage = 1;
 }
 
 void Entity::update(sf::Time dt) {
-    animator.setFrames(AssetManager::getInstance().getFrames(CharacterType::ORC, currentAction));
+    animator.setFrames(AssetManager::getInstance().getFrames(character, currentAction));
     animator.animate(sprite, dt);
 }
 

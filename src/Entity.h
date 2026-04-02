@@ -6,9 +6,10 @@
 
 class Entity {
     public:
-        Entity(sf::Texture&);
+        Entity(sf::Texture&, CharacterType);
+        virtual ~Entity() = default;
         
-        void update(sf::Time);
+        virtual void update(sf::Time);
 
         void setSprite(sf::Texture&);
         void setHP(int);

@@ -10,7 +10,7 @@
 #include <vector>
 
 Player::Player()
-: Entity(AssetManager::getInstance().getTexture(CharacterType::SOLDIER, Action::IDLE))
+: Entity(AssetManager::getInstance().getTexture(CharacterType::SOLDIER, Action::IDLE), CharacterType::SOLDIER)
 {
     hp = 3;
     attackDamage = 5;
