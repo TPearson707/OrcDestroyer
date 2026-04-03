@@ -9,8 +9,14 @@
 
 #include "Entity.h"
 
+enum class States {IDLE, WALKING, ATTACK, DEATH};
+
 class Orc : public Entity {
     public:
         Orc();
         virtual void update(sf::Time);
+    private:
+        void processState();
+    private:
+        States currentState;
 };

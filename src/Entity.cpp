@@ -7,6 +7,7 @@ Entity::Entity(sf::Texture& texture, CharacterType character)
     this->character = character;
     hp = 1;
     attackDamage = 1;
+    speed = 3;
 }
 
 void Entity::update(sf::Time dt) {
@@ -27,6 +28,10 @@ void Entity::setAttackDamage(int attackDamage) {
     this->attackDamage = std::max(0, attackDamage);
 }
 
+void Entity::setSpeed(float speed) {
+    this->speed = speed;
+}
+
 sf::Sprite& Entity::getSprite() {
     return sprite;
 }
@@ -37,6 +42,10 @@ int Entity::getHP() {
 
 int Entity::getAttackDamage() {
     return attackDamage;
+}
+
+float Entity::getSpeed() {
+    return speed;
 }
 
 void Entity::printEntityInfo() {

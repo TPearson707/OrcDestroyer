@@ -69,6 +69,53 @@ Owns the window, the delta time clock, the player, and the orc. The loop is: res
 
 ---
 
+## Day Two Refactor — Animation Extraction
+
+Extracted animation control from entities, and built a separate universal animator class to animate said entity
+
+**What I built:**
+
+### Animator — Animates the games Entities
+
+- Initializes `currentFrame`, `animTimer`, `frameInterval`
+- Sets and stores object frames using `const std::vector<sf::IntRect>& frames`
+- Animates an entity input by reference using the game loops delta time value.
+
+---
+
+### Entity — Inheritance hierarchy for Player and Orc
+
+- Implemented a parent class for functionality shared by Player and Orc
+- Constructor takes in `sf::Texture& texture` and `CharacterType character` to initialize sprite and set default values for data members
+
+---
+
+### Player and Orc — Children of Entity
+
+- Constructor now passes `sf::Texture& texture` and `CharacterType character` to called parent constructor, as well as setting default `Character` specific initialization values
+- `Player` now contains `handleInput()` for input driven behavior
+- `Orc` contains a state machine — AI-driven behavior (idle, patrol, chase, attack, die)
+- Both call personal functions in `update()` then delegate animation behavior to parent `update(dt)`
+
+---
+
+### Fixed Time Step — Future Proofing
+
+Variable delta time works for animation but causes instability in physics and collision detection — frame rate spikes mean larger time steps, which can cause tunneling or inconsistent behavior.
+
+Replaced the variable `dt = clock.restart()` approach with a fixed time step accumulator:
+- Physics and collision always update in consistent increments (e.g., 1/60th of a second)
+- Accumulator stores leftover time between frames
+- Rendering can still happen at variable rates, interpolating between states if needed
+
+This is the standard solution for any game with collision or physics.
+
+**Next Step — `Implemenation of player input, and orc state machine`**
+
+Now that I have a solid foundation for the game thus far. I can continue my progression by implementing player movement, and setting up the state machine for the Orc's.
+
+---
+
 ## References
 
 **SFML Documentation**  

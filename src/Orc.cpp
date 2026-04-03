@@ -20,9 +20,24 @@ Orc::Orc()
     sprite.setOrigin({100.f, 0.f});  // Assuming frame width is 100
     sprite.setScale({-1.f, 1.f});
     sprite.setPosition({400.f, 300.f});  // Now this position is where you expect
+
+    currentState = States::IDLE;
 }
 
+void Orc::processState() {
+    switch(currentState) {
+        case States::IDLE:
+            break;
+        case States::WALKING:
+            break;
+        case States::ATTACK:
+            break;
+        case States::DEATH:
+            break;
+    }
+} 
+
 void Orc::update(sf::Time dt) {
-    // State machine function here
+    processState();
     Entity::update(dt);
 }

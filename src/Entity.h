@@ -14,19 +14,25 @@ class Entity {
         void setSprite(sf::Texture&);
         void setHP(int);
         void setAttackDamage(int);
+        void setSpeed(float);
 
         sf::Sprite& getSprite();
 
         int getHP();
         int getAttackDamage(); 
+        float getSpeed();
+
 
         void printEntityInfo();
     
     protected:
         sf::Sprite sprite;  
         Animator animator;
-        int hp;
-        int attackDamage;
+
         CharacterType character;
         Action currentAction = Action::IDLE;
+
+        int hp;
+        int attackDamage;
+        float speed;
 };
