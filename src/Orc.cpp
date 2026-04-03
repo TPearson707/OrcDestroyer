@@ -21,3 +21,8 @@ Orc::Orc()
     sprite.setScale({-1.f, 1.f});
     sprite.setPosition({400.f, 300.f});  // Now this position is where you expect
 }
+
+void Orc::update(sf::Time dt) {
+    // State machine function here
+    Entity::update(dt);
+}

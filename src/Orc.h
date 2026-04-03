@@ -12,4 +12,5 @@
 class Orc : public Entity {
     public:
         Orc();
+        virtual void update(sf::Time);
 };

@@ -13,4 +13,5 @@ class Player : public Entity {
     public:
         Player();
         void handleInput();
+        virtual void update(sf::Time);
 };

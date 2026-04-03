@@ -26,3 +26,8 @@ Player::Player()
 void Player::handleInput() {
 
 }
+
+void Player::update(sf::Time dt) {
+    handleInput();
+    Entity::update(dt);
+}
