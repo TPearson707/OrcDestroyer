@@ -27,6 +27,9 @@ Player::Player()
 void Player::moveSprite() {
     sf::Vector2f direction{0.f, 0.f};
 
+    // set walking animation
+    setSpriteAnimation(CharacterType::SOLDIER, Action::WALK); // currently being called every frame UGH
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
         direction.y -= 1.f;
         facing = Direction::UP;
@@ -39,11 +42,15 @@ void Player::moveSprite() {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) { 
         direction.x -= 1.f;
+        sprite.setScale({-1.f, 1.f});
+        sprite.setOrigin({100.f, 0.f});
         facing = Direction::LEFT;
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
         direction.x += 1.f;
+        sprite.setScale({1.f, 1.f});
+        sprite.setOrigin({0.f, 0.f});
         facing = Direction::RIGHT;
     }
 
@@ -86,6 +93,10 @@ void Player::checkDash() {
     }
 
     fWasPressed = fIsPressed;
+}
+
+void Player::attack() {
+    
 }
 
 void Player::handleInput() {

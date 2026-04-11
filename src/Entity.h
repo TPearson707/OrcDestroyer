@@ -12,6 +12,7 @@ class Entity {
         virtual void update(sf::Time);
 
         void setSprite(sf::Texture&);
+        void setSpriteAnimation(CharacterType, Action);
         void setHP(int);
         void setAttackDamage(int);
         void setSpeed(float);

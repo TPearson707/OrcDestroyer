@@ -19,6 +19,13 @@ void Entity::setSprite(sf::Texture& newSprite) {
     sprite.setTexture(newSprite);
 }
 
+void Entity::setSpriteAnimation(CharacterType character, Action action) {
+    setSprite(AssetManager::getInstance().getTexture(character, action));
+    std::vector<sf::IntRect> characterFrames = AssetManager::getInstance().getFrames(character, action);
+    sprite.setTextureRect(characterFrames[0]);
+    animator.setFrames(characterFrames);
+}
+
 // Using sentinel/assert - enforce minimum 0
 void Entity::setHP(int hp) {
     this->hp = std::max(0, hp);

@@ -22,7 +22,7 @@
 #include "ResourceManager.hpp"
 
 enum class CharacterType { SOLDIER, ORC };
-enum class Action { IDLE, WALK, ATTACK };
+enum class Action { IDLE, WALK, ATTACK, DEATH };
 
 struct AssetKey {
     CharacterType character;

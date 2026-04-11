@@ -38,7 +38,6 @@ void Game::run() {
 
         render();
     }
-
 }
 
 void Game::processEvents() {
@@ -53,7 +52,9 @@ void Game::processEvents() {
 
 void Game::update(sf::Time dt) {
     player.update(dt);
-    orc.update(dt);
+
+    // Dependency Injection of Entity& player into orc
+    orc.update(player, dt);
 
     
 }
